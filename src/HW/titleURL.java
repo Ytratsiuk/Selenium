@@ -1,9 +1,9 @@
-package class01;
+package HW;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class HW {
+public class titleURL {
     public static void main(String[] args) {
         //launch the browser
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
