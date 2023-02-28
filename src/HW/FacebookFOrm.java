@@ -13,20 +13,31 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class FacebookFOrm {
     public static void main(String[] args) throws InterruptedException {
         System.setProperty("webdriver.chrome.driver", "drivers/chromedriver");
-        WebDriver chrome = new ChromeDriver();
-        chrome.get("https://www.facebook.com/");
-        chrome.manage().window().maximize();
-        chrome.findElement(By.linkText("Create new account")).click();
-        chrome.findElement(By.id("u_q_b_Sb")).click();
-        chrome.findElement(By.className("lastname")).sendKeys("Tratsiuk");
-        chrome.findElement(By.className("reg_email__")).sendKeys("parada@gmail.com");
-        chrome.findElement(By.id("password_step_input")).sendKeys("proba739");
-        chrome.findElement(By.id("month")).sendKeys("12");
-        chrome.findElement(By.id("day")).sendKeys("25");
-        chrome.findElement(By.id("year")).sendKeys("1985");
-        chrome.findElement(By.className("_58mt")).click();
-        Thread.sleep(4000);
-        chrome.findElement(By.className("websubmit")).click();
-        chrome.quit();
+        WebDriver driver = new ChromeDriver();
+        driver.get("https://www.facebook.com");
+        driver.manage().window().maximize();
+        //to handle a cookies pop up
+        /*if (driver.findElement(By.xpath("//button[@title='Allow essential and optional cookies']")).isDisplayed()) {
+            driver.findElement(By.xpath("//button[@title='Allow essential and optional cookies']")).click();
+        }*/
+        driver.findElement(By.linkText("Create new account")).click();
+        Thread.sleep(3000);
+
+        driver.findElement(By.name("firstname")).sendKeys("TestName");
+        driver.findElement(By.name("lastname")).sendKeys("TestLastName");
+        driver.findElement(By.name("reg_email__")).sendKeys("testemail@gmail.com");
+        driver.findElement(By.name("reg_email_confirmation__")).sendKeys("testemail@gmail.com");
+        driver.findElement(By.name("reg_passwd__")).sendKeys("passTest");
+        driver.findElement(By.name("birthday_month")).sendKeys("Dec");
+        driver.findElement(By.name("birthday_day")).sendKeys("8");
+        driver.findElement(By.name("birthday_year")).sendKeys("1999");
+        driver.findElement(By.name("sex")).click();
+        Thread.sleep(1000);
+        driver.findElement(By.name("websubmit")).click();
+
+        Thread.sleep(3000);
+        driver.close();
+        Thread.sleep(3000);
+        driver.quit();
     }
 }
