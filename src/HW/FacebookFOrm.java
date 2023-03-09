@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 /*navigate to fb.com
         click on create new account
         fill up all the textboxes
@@ -16,12 +18,14 @@ public class FacebookFOrm {
         WebDriver driver = new ChromeDriver();
         driver.get("https://www.facebook.com");
         driver.manage().window().maximize();
+        //implicit wait declared once! no thread sleep-- waisting time.
+        driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
+
         //to handle a cookies pop up
         /*if (driver.findElement(By.xpath("//button[@title='Allow essential and optional cookies']")).isDisplayed()) {
             driver.findElement(By.xpath("//button[@title='Allow essential and optional cookies']")).click();
         }*/
         driver.findElement(By.linkText("Create new account")).click();
-        Thread.sleep(3000);
 
         driver.findElement(By.name("firstname")).sendKeys("TestName");
         driver.findElement(By.name("lastname")).sendKeys("TestLastName");
@@ -32,12 +36,11 @@ public class FacebookFOrm {
         driver.findElement(By.name("birthday_day")).sendKeys("8");
         driver.findElement(By.name("birthday_year")).sendKeys("1999");
         driver.findElement(By.name("sex")).click();
-        Thread.sleep(1000);
+
         driver.findElement(By.name("websubmit")).click();
 
-        Thread.sleep(3000);
         driver.close();
-        Thread.sleep(3000);
+
         driver.quit();
     }
 }
